@@ -1,0 +1,1 @@
+# Asteroids is a learning project to build a game with pygame
