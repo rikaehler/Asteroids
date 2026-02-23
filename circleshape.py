@@ -1,10 +1,9 @@
 import pygame
 
-# Base class for game objects
+# base class for game objects
 class CircleShape(pygame.sprite.Sprite):
-    containers = () # to satisfy Pylance checker
     def __init__(self, x, y, radius):
-        # we will be using this later
+        
         if hasattr(self, "containers"):
             super().__init__(self.containers) # type: ignore
         else:

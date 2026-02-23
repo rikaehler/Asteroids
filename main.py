@@ -21,18 +21,16 @@ def main():
     # create groups to hold multiple updatable objects
     updatable =pygame.sprite.Group()
     drawable = pygame.sprite.Group()
-    Player.containers = (updatable, drawable)
+    Player.containers = (updatable, drawable) # type: ignore
 
     asteroids = pygame.sprite.Group()
-    Asteroid.containers = (asteroids, updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable) # type: ignore
 
-    AsteroidField.containers = (updatable)
+    AsteroidField.containers = (updatable) # type: ignore
     asteroidfield = AsteroidField()
 
     # Instantiate the player, automatically added to the groups
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT /2)
-
-
 
     # start game loop
     while True:
