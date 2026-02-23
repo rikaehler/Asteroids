@@ -29,6 +29,7 @@ def main():
 
         # fill screen with solid black and refresh screen   
         screen.fill("black")
+        player.update(dt)
         player.draw(screen)
         pygame.display.flip()
         clock.tick(60)
