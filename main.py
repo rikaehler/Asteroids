@@ -16,9 +16,16 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
+    # create groups to hold multiple updatable objects
+    updatable =pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
+    # Instantiate the player, automatically added to the groups
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT /2)
 
-    #start game loop
+
+
+    # start game loop
     while True:
         log_state()
 
@@ -27,10 +34,15 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-        # fill screen with solid black and refresh screen   
+        #update all objects in group 'updatable'
+        for obj in updatable:
+            obj.update(dt)
+            
+        # fill screen with solid black and draw screen
         screen.fill("black")
-        player.update(dt)
-        player.draw(screen)
+        for obj in drawable:
+            obj.draw(screen)
+
         pygame.display.flip()
         clock.tick(60)
         dt = clock.tick(60) / 1000
