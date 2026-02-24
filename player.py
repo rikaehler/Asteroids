@@ -9,6 +9,7 @@ class Player(CircleShape):
 
         # initialize rotation attribute
         self.rotation = 0
+        self.shoot_timer = 0
     
     # in the Player class
     def triangle(self):
@@ -28,6 +29,11 @@ class Player(CircleShape):
         )
 
     def shoot(self):
+        # if timer is active, exit early to prevent player from shooting
+        if self.shoot_timer > 0:
+            return
+        self.shoot_timer = PLAYER_SHOOT_COOLDOWN_SECONDS
+
         new_shot = Shot(self.position.x, self.position.y, SHOOT_RADIUS)
         velocity = pygame.Vector2(0,1)
         velocity = velocity.rotate(self.rotation)
@@ -45,6 +51,11 @@ class Player(CircleShape):
         self.rotation += PLAYER_TURN_SPEED * dt
 
     def update(self, dt):
+        # update shoot_timer to be able to shoot again
+        if self.shoot_timer > 0:
+            self.shoot_timer -= dt
+        
+        # keypresses
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_a]:

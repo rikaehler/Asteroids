@@ -57,6 +57,14 @@ def main():
                 log_event("player_hit")
                 print("Game over!")
                 sys.exit()
+        
+        # collision detection between asteroid and bullet
+        for asteroid in asteroids:
+            for shot in shots:
+                if asteroid.collides_with(shot):
+                    log_event("asteroid_shot")
+                    asteroid.kill() # removes from all Groups
+                    shot.kill() # removes from all Groups
 
         # fill screen with solid black and draw screen
         screen.fill("black")
