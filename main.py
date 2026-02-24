@@ -63,7 +63,7 @@ def main():
             for shot in shots:
                 if asteroid.collides_with(shot):
                     log_event("asteroid_shot")
-                    asteroid.kill() # removes from all Groups
+                    asteroid.split() # removes from all Groups
                     shot.kill() # removes from all Groups
 
         # fill screen with solid black and draw screen
